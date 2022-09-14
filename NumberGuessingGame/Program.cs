@@ -1,43 +1,78 @@
-﻿while(true)
+﻿// Number Guessing Game //
+bool keepPlaying = true;
+int min = 1;
+int max = 100;
+double coins = 4.00; 
+int randomNumber;
+int userGuess;
+int guesses;
+string userResponse;
+
+while (keepPlaying && coins > 0)
 {
-    Console.WriteLine("*********************"); 
+    Random rnd = new Random();
+    randomNumber = rnd.Next(1, 101);
+    userGuess = 0;
+    guesses = 0;
+    Console.WriteLine("*********************");
     Console.WriteLine("Number Guessing Game");
     Console.WriteLine("*********************");
     Console.WriteLine();
-    Console.Write("Please Enter a Number between 1 and 100: ");
+    Console.WriteLine($"You have {coins} coins ");
+    Console.WriteLine();
+    Console.Write("Please Enter a Coin! ");
+    Console.ReadLine();
+    Console.Clear(); 
+    coins -= 1; 
 
-    int userInput = int.Parse(Console.ReadLine());
-    Random rnd = new Random();
-    int randomNumber = rnd.Next(1,101);
-    int userGuess = 0;
+    while (userGuess != randomNumber)
+    {
+        Console.WriteLine($"Number of Guesses: * {guesses} *");
+        Console.WriteLine(); 
+        Console.Write($"Please Enter a Number between {min} and {max}: ");
+        userGuess = int.Parse(Console.ReadLine());
+        Console.Clear();
+        if (randomNumber > userGuess)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Too low, try again. ");
+            Console.WriteLine();
+            
+        }
+        else if (randomNumber < userGuess)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Too high, try again. ");
+            Console.WriteLine();
+            
+        }
+        guesses++;
 
-    if (randomNumber == userInput)
-    {
-        Console.WriteLine("YOU WON THE GAME!!!");
-        userGuess++;
-        Console.WriteLine($"Number of Guesses {userGuess}");
     }
-    else if (randomNumber > userInput)
+    Console.Clear(); 
+    Console.WriteLine("YOU WON THE GAME!!!!!!!");
+    Console.WriteLine();
+    Console.WriteLine($"You have {coins} coins left! ");
+    Console.WriteLine();
+    Console.Write("Would You Like to Continue(Y/N) ");
+    userResponse = Console.ReadLine();
+    Console.Clear(); 
+
+    if (userResponse?.ToUpper() == "Y")
     {
-        Console.WriteLine("Too low, try again. ");
-        userGuess++;
-        Console.WriteLine($"Number of Guesses {userGuess}");
+        keepPlaying = true; 
     }
-    else if (randomNumber < userInput)
+    else if(userResponse?.ToUpper() == "N")
     {
-        Console.WriteLine("Too high, try again. ");
-        userGuess++;
-        Console.WriteLine($"Number of Guesses {userGuess}");
+        keepPlaying = false;
+        Console.WriteLine();
+        Console.Write("Sounds Good! See you next time!");
+        Console.ReadLine(); 
     }
     else
     {
-        Console.WriteLine("Something Went Wrong."); 
+        Console.WriteLine("Please Enter a Valid Choice"); 
     }
-    Console.Write("Try Again(Y/N)? ");
-    string userDecision = Console.ReadLine().ToUpper();
-    if (userDecision == "N")
-    {
-        break;
-    }
-  
+
+
 }
