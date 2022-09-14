@@ -10,6 +10,7 @@ string userResponse;
 
 while (keepPlaying && coins > 0)
 {
+    // Outer Loop Start /
     Random rnd = new Random();
     randomNumber = rnd.Next(1, 101);
     userGuess = 0;
@@ -24,14 +25,13 @@ while (keepPlaying && coins > 0)
     Console.ReadLine();
     Console.Clear(); 
     coins -= 1; 
-
+    
     while (userGuess != randomNumber)
-    {
+    {   // Innner Loop Start //
         Console.WriteLine($"Number of Guesses: * {guesses} *");
         Console.WriteLine(); 
         Console.Write($"Please Enter a Number between {min} and {max}: ");
         userGuess = int.Parse(Console.ReadLine());
-        Console.Clear();
         if (randomNumber > userGuess)
         {
             Console.WriteLine();
@@ -47,8 +47,9 @@ while (keepPlaying && coins > 0)
             
         }
         guesses++;
-
+        // Break out of Inner Loop //
     }
+    // Outter Loop Continue // 
     Console.Clear(); 
     Console.WriteLine("YOU WON THE GAME!!!!!!!");
     Console.WriteLine();
@@ -74,5 +75,6 @@ while (keepPlaying && coins > 0)
         Console.WriteLine("Please Enter a Valid Choice"); 
     }
 
+    // Break out of Outer Loop // 
 
 }
