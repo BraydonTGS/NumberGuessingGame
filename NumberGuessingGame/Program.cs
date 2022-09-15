@@ -2,7 +2,7 @@
 bool keepPlaying = true;
 int min = 1;
 int max = 100;
-double coins = 1.00;
+double coins = 4.00;
 int randomNumber;
 int userGuess;
 int guesses;
@@ -10,7 +10,7 @@ string userResponse;
 
 
 
-while (keepPlaying & coins > 0)
+while (keepPlaying)
 {
     // Outer Loop Start /
     Random rnd = new Random();
@@ -30,13 +30,13 @@ while (keepPlaying & coins > 0)
 
     while (userGuess != randomNumber)
     {   // Innner Loop Start //
-        Console.WriteLine($"> Number of Guesses: * {guesses} *");
+        Console.WriteLine($"> Number of Guesses: > {guesses} <");
         Console.WriteLine();
         Console.Write($"> Please Enter a Number between {min} and {max}: ");
         userGuess = int.Parse(Console.ReadLine());
         if (randomNumber > userGuess)
         {
-            Console.WriteLine();
+            Console.Clear();
             Console.WriteLine("> Too low, try again. ");
             Console.WriteLine();
 
@@ -44,7 +44,7 @@ while (keepPlaying & coins > 0)
         }
         else if (randomNumber < userGuess)
         {
-            Console.WriteLine();
+            Console.Clear();
             Console.WriteLine("> Too high, try again. ");
             Console.WriteLine();
 
@@ -69,6 +69,9 @@ while (keepPlaying & coins > 0)
     else if (userResponse?.ToUpper() == "N")
     {
         keepPlaying = false;
+        Console.WriteLine(@" +-+-+-+-+ +-+-+-+-+
+ |G|a|m|e| |O|v|e|r|
+ +-+-+-+-+ +-+-+-+-+");
         Console.WriteLine();
         Console.Write("> Sounds Good! See you next time!");
         Console.ReadKey();
